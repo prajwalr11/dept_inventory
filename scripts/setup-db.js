@@ -33,7 +33,9 @@ async function createDatabase() {
 
 async function restoreDatabase() {
   return new Promise((resolve, reject) => {
-    const restoreCommand = `pg_restore -U ${config.user} -d ${databaseName} -v ${dumpFilePath}`;
+   // const restoreCommand = `pg_restore -U ${config.user} -d ${databaseName} -v ${dumpFilePath}`;
+    const restoreCommand = `"C:\\Program Files\\PostgreSQL\\16\\bin\\pg_restore" -U ${config.user} -d ${databaseName} -v ${dumpFilePath}`;
+
 
     exec(
       restoreCommand,

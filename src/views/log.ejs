@@ -1,7 +1,7 @@
 <%- include('./partials/header') %> 
 <%- include('./partials/nav') %> 
           <div class="col-sm-6">
-            <h1>Log Aplikasi</h1>
+            <h1>Application Log</h1>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -14,7 +14,7 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Tabel Log Aplikasi</h3>
+                <h3 class="card-title">Application Log Table</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -22,8 +22,8 @@
                   <thead>
                     <tr>
                       <th>No</th>
-                      <th>Tanggal & Waktu</th>
-                      <th>Pengguna</th>
+                      <th>Date & Time</th>
+                      <th>Users</th>
                       <th>Method</th>
                       <th>Endpoint</th>
                       <th>Status Code</th>
@@ -33,7 +33,7 @@
                     <% log.forEach((element, index)=> { %>
                     <tr>
                       <td><%= index+1%></td>
-                      <td><%= moment(element.date).locale('id').format('DD-MM-YYYY HH:mm:ss') %></td>
+                      <td><%= moment(element.date).locale('en').format('DD-MM-YYYY HH:mm:ss') %></td>
                       <td><%= element.usr %></td>
                       <td><%= element.method %></td>
                       <td><%= element.endpoint %></td>
@@ -60,17 +60,17 @@
         <div class="modal-content">
           <!-- Modal Header-->
           <div class="modal-header">
-            <h4 class="modal-title">Bersihkan Log</h4>
+            <h4 class="modal-title">Clear Log</h4>
             <button type="button" class="close" onclick="$('#clearLog').modal('hide');">&times;</button>
           </div>
           <!-- Modal body-->
           <form action="/log/delete/" method="post">
             <div class="modal-body">
-              Apakah Anda yakin ingin menghapus semua data log yang tersimpan ?
+              Are you sure you want to delete all the stored log data?
             </div>
             <div class="modal-footer">
-              <button type="submit" class="btn btn-primary">Ya</button>
-              <button type="button" class="btn btn-secondary" onclick="$('#clearLog').modal('hide');">Batal</button>
+              <button type="submit" class="btn btn-primary">Yes</button>
+              <button type="button" class="btn btn-secondary" onclick="$('#clearLog').modal('hide');">Cancel</button>
             </div>
           </form>
         </div>

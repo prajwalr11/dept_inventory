@@ -1,14 +1,14 @@
 <%- include('./partials/header') %> 
 <%- include('./partials/nav') %> 
           <div class="col-sm-6">
-            <h1>Barang Keluar</h1>
+            <h1>Remove Item</h1>
           </div>
           <div class="col-sm-6">
             <div id="bt" class="float-sm-right">
               <div class="dt-buttons btn-group flex-wrap">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add">
                   <i class="fas fa-plus"></i>
-                  Tambah Barang Keluar
+                  Add Stuff Out
                 </button>
               </div>
             </div>
@@ -30,7 +30,7 @@
             <% } %> 
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Tabel Barang Keluar</h3>
+                <h3 class="card-title">Outgoing Goods Table</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -38,14 +38,14 @@
                   <thead>
                     <tr>
                       <th>No</th>
-                      <th>Tanggal & Waktu</th>
-                      <th>Kode Barang</th>
-                      <th>Nama Barang</th>
-                      <th>Jumlah</th>
-                      <th>Penerima</th>
-                      <th>Penginput</th>
+                      <th>Date & Time</th>
+                      <th>Item Code</th>
+                      <th>Item Name</th>
+                      <th>Amount</th>
+                      <th>Recipient</th>
+                      <th>Input</th>
                       <% if(typeof locals.user != 'undefined') { %>
-                      <th>Aksi</th>
+                      <th>Action</th>
                       <% } %> 
                     </tr>
                   </thead>
@@ -53,18 +53,18 @@
                     <% brgk.forEach((element, index)=> { %>
                     <tr>
                       <td><%= index+1%></td>
-                      <td><%= moment(element.tanggal).locale('id').format('DD-MM-YYYY HH:mm:ss') %></td>
-                      <td><%= element.kodebarang_k %></td>
-                      <td><%= element.namabarang_k %></td>
+                      <td><%= moment(element.date).locale('id').format('DD-MM-YYYY HH:mm:ss') %></td>
+                      <td><%= element.item_code %></td>
+                      <td><%= element.item_name %></td>
                       <td><%= element.qty %></td>
-                      <td><%= element.penerima %></td>
-                      <td><%= element.penginput %></td>
+                      <td><%= element.recipient %></td>
+                      <td><%= element.input %></td>
                       <% if(typeof locals.user != 'undefined') { %>
                       <td>
-                        <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit<%= element.idkeluar %>">
+                        <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit<%= element.id %>">
                           <i class="fas fa-edit"></i>
                         </button>
-                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete<%= element.idkeluar %>">
+                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete<%= element.id %>">
                           <i class="fas fa-trash-alt"></i>
                         </button>
                       </td>
@@ -72,31 +72,31 @@
                     </tr>
 
                     <!-- Edit Modal -->
-                    <div class="modal fade" id="edit<%= element.idkeluar %>">
+                    <div class="modal fade" id="edit<%= element.id %>">
                       <div class="modal-dialog">
                         <div class="modal-content">
                           <!-- Modal Header -->
                           <div class="modal-header">
-                            <h4 class="modal-title">Edit Barang Keluar</h4>
-                            <button type="button" class="close" onclick="$('#edit<%= element.idkeluar %>').modal('hide');">&times;</button>
+                            <h4 class="modal-title">Edit Outgoing Goods</h4>
+                            <button type="button" class="close" onclick="$('#edit<%= element.id %>').modal('hide');">&times;</button>
                           </div>
                           <!-- Modal body -->
-                          <form action="/barangkeluar/<%= element.idkeluar %>?_method=put" method="post">
+                          <form action="/barangkeluar/<%= element.id %>?_method=put" method="post">
                             <div class="modal-body">
-                              <input type="hidden" name="idkeluar" required value="<%= element.idkeluar %>"/>
+                              <input type="hidden" name="idkeluar" required value="<%= element.id %>"/>
                               <input type="hidden" name="idbarang" required value="<%= element.idbarang %>"/>
                               <div class="form-group">
-                                <label for="qty">Jumlah</label>
-                                <input type="number" name="qty" class="form-control" min="1" placeholder="Jumlah" required value="<%= element.qty %>" />
+                                <label for="qty">Amount</label>
+                                <input type="number" name="qty" class="form-control" min="1" placeholder="Quantity" required value="<%= element.qty %>" />
                               </div>
                               <div class="form-group">
-                                <label for="penerima">Penerima</label>
-                                <input type="text" name="penerima" class="form-control" placeholder="Penerima" required value="<%= element.penerima %>" />
+                                <label for="recipient">Recipient</label>
+                                <input type="text" name="recipient" class="form-control" placeholder="Recipient" required value="<%= element.recipient %>" />
                               </div>
                             </div>
                             <div class="modal-footer">
-                              <button type="submit" class="btn btn-primary">Simpan</button>
-                              <button type="button" class="btn btn-secondary" onclick="$('#edit<%= element.idkeluar %>').modal('hide');">Tutup</button>
+                              <button type="submit" class="btn btn-primary">Save</button>
+                              <button type="button" class="btn btn-secondary" onclick="$('#edit<%= element.id %>').modal('hide');">Clear</button>
                             </div>
                           </form>
                         </div>
@@ -104,25 +104,25 @@
                     </div>
                   
                     <!-- Delete Modal-->
-                    <div class="modal fade" id="delete<%= element.idkeluar %>">
+                    <div class="modal fade" id="delete<%= element.id %>">
                       <div class="modal-dialog">
                         <div class="modal-content">
                           <!-- Modal Header-->
                           <div class="modal-header">
-                            <h4 class="modal-title">Hapus Barang Keluar</h4>
-                            <button type="button" class="close" onclick="$('#delete<%= element.idkeluar %>').modal('hide');">&times;</button>
+                            <h4 class="modal-title">Remove Outgoing Items</h4>
+                            <button type="button" class="close" onclick="$('#delete<%= element.id %>').modal('hide');">&times;</button>
                           </div>
                           <!-- Modal body-->
-                          <form action="/barangkeluar/delete/<%= element.idkeluar %>" method="post">
+                          <form action="/barangkeluar/delete/<%= element.id %>" method="post">
                             <div class="modal-body">
-                              Apakah Anda yakin ingin menghapus barang keluar <%= element.namabarang_k %> pada tanggal <%= moment(element.tanggal).locale('id').format('DD-MM-YYYY [jam] HH:mm:ss') %>?
-                              <input type="hidden" name="idkeluar" required value="<%= element.idkeluar %>">
+                              Are you sure you want to remove the item <%= element.item_name %> on date <%= moment(element.date).locale('id').format('DD-MM-YYYY [at] HH:mm:ss') %>?
+                              <input type="hidden" name="idkeluar" required value="<%= element.id %>">
                               <input type="hidden" name="idbarang" required value="<%= element.idbarang %>">
                               <input type="hidden" name="qty" required value="<%= element.qty %>">
                             </div>
                             <div class="modal-footer">
-                              <button type="submit" class="btn btn-primary">Ya</button>
-                              <button type="button" class="btn btn-secondary" onclick="$('#delete<%= element.idkeluar %>').modal('hide');">Batal</button>
+                              <button type="submit" class="btn btn-primary">Yes</button>
+                              <button type="button" class="btn btn-secondary" onclick="$('#delete<%= element.id %>').modal('hide');">Clear</button>
                             </div>
                           </form>
                         </div>
@@ -150,7 +150,7 @@
         <div class="modal-content">
           <!-- Modal Header -->
           <div class="modal-header">
-            <h4 class="modal-title">Tambah Barang Keluar</h4>
+            <h4 class="modal-title">Add Outgoing Items</h4>
             <button type="button" class="close" onclick="$('#add').modal('hide');stopScan();">&times;</button>
           </div>
           <!-- Modal body -->
@@ -160,34 +160,34 @@
                 <div id="reader"></div>
               </div>
               <div class="form-group">
-                <label for="barang">Pilih Barang</label>
-                <select class="form-control select2bs4" id="barang" name="barang" required>
-                  <option value="" disabled selected>Pilih Barang</option>
+                <label for="goods">Select Item</label>
+                <select class="form-control select2bs4" id="goods" name="goods" required>
+                  <option value="" disabled selected>Select Item</option>
                   <% brg.forEach((element)=> { %>
                   <% if(element.stock>0) { %> 
-                  <option value="<%= element.idbarang %>"><%= element.kodebarang %> - <%= element.namabarang %></option>
+                  <option value="<%= element.idbarang %>"><%= element.item_code %> - <%= element.item_name %></option>
                   <% } else { %> 
-                  <option value="<%= element.idbarang %>"><%= element.kodebarang %> - <%= element.namabarang %> (Habis)</option>
+                  <option value="<%= element.idbarang %>"><%= element.item_code %> - <%= element.item_name %> (Out of Stock)</option>
                   <% } %> 
                   <% }) %> 
                 </select>
               </div>
               <div class="form-group">
-                <label for="qty">Jumlah</label>
-                <input type="number" name="qty" class="form-control" placeholder="Jumlah" min="1" required />
+                <label for="qty">Amount</label>
+                <input type="number" name="qty" class="form-control" placeholder="Quantity" min="1" required />
               </div>
               <div class="form-group">
-                <label for="penerima">Penerima</label>
-                <input type="text" name="penerima" class="form-control" placeholder="Penerima" required />
+                <label for="recipient">Recipient</label>
+                <input type="text" name="recipient" class="form-control" placeholder="Recipient" required />
               </div>
             </div>
             <div class="modal-footer">
-              <button type="submit" class="btn btn-primary">Simpan</button>
-              <button type="button" class="btn btn-secondary" onclick="$('#add').modal('hide');stopScan();">Tutup</button>
+              <button type="submit" class="btn btn-primary">Save</button>
+              <button type="button" class="btn btn-secondary" onclick="$('#add').modal('hide');stopScan();">Clear</button>
             </div>
           </form>
         </div>
       </div>
     </div>
 
-<%- include('./partials/footer') %> 
+<%- include('./partials/footer') %>

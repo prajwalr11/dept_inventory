@@ -1,14 +1,14 @@
 <%- include('./partials/header') %> 
 <%- include('./partials/nav') %> 
           <div class="col-sm-6">
-            <h1>Stok Barang</h1>
+            <h1>Stock items</h1>
           </div>
           <div class="col-sm-6">
             <div id="bt" class="float-sm-right">
               <div class="dt-buttons btn-group flex-wrap">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add">
                   <i class="fas fa-plus"></i>
-                  Tambah Barang
+                  add items
                 </button>
               </div>
             </div>
@@ -32,7 +32,7 @@
             <% } %> 
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Tabel Stok Barang</h3>
+                <h3 class="card-title">item stock table</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -40,13 +40,13 @@
                   <thead>
                     <tr>
                       <th>No</th>
-                      <th>Kode Barang</th>
-                      <th>Gambar</th>
-                      <th>Nama Barang</th>
-                      <th>Deskripsi</th>
-                      <th>Stok</th>
-                      <th>Penginput</th>
-                      <th>Aksi</th>
+                      <th>item code</th>
+                      <th>picture</th>
+                      <th>item name</th>
+                      <th>Description</th>
+                      <th>Stock</th>
+                      <th>input</th>
+                      <th>action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -81,7 +81,7 @@
                         <div class="modal-content">
                           <!-- Modal Header -->
                           <div class="modal-header">
-                            <h4 class="modal-title">Edit Barang</h4>
+                            <h4 class="modal-title">Edit item</h4>
                             <button type="button" class="close" onclick="$('#edit<%= element.idbarang %>').modal('hide');">&times;</button>
                           </div>
                           <!-- Modal body -->
@@ -92,30 +92,30 @@
                               <input type="hidden" name="idbarang" required value="<%= element.idbarang %>"/>
                               <input type="hidden" name="image" required value="<%= element.image %>"/>
                               <div class="form-group">
-                                <label for="kodebarang">Kode Barang</label>
+                                <label for="kodebarang">item code</label>
                                 <input type="text" name="kodebarang" class="form-control" placeholder="Kode Barang" required value="<%= element.kodebarang %>" />
                               </div>
                               <div class="form-group">
-                                <label for="namabarang">Nama Barang</label>
+                                <label for="namabarang">item name</label>
                                 <input type="text" name="namabarang" class="form-control" placeholder="Nama Barang" required value="<%= element.namabarang %>" />
                               </div>
                               <div class="form-group">
-                                <label for="deskripsi">Deskripsi</label>
+                                <label for="deskripsi">description</label>
                                 <textarea name="deskripsi" class="form-control" rows="2" placeholder="Deskripsi" required><%= element.deskripsi %></textarea>
                               </div>
                               <div class="form-group">
-                                <label for="stock">Stok</label>
+                                <label for="stock">Stock</label>
                                 <input type="number" name="stock" class="form-control" min="0" placeholder="Stok" required value="<%= element.stock %>" />
                               </div>
                               <div class="form-group">
-                                <label for="image">Gambar</label>
+                                <label for="image">picture</label>
                                 <input type="file" name="image" accept="image/png, image/jpeg" class="form-control-file" />
                                 <small class="form-text text-muted">Maks: 1MB</small>
                               </div>
                             </div>
                             <div class="modal-footer">
-                              <button type="submit" class="btn btn-primary mb-2">Simpan</button>
-                              <button type="button" class="btn btn-secondary" onclick="$('#edit<%= element.idbarang %>').modal('hide');">Tutup</button>
+                              <button type="submit" class="btn btn-primary mb-2">save</button>
+                              <button type="button" class="btn btn-secondary" onclick="$('#edit<%= element.idbarang %>').modal('hide');">close</button>
                             </div>
                           </form>
                         </div>
@@ -128,17 +128,17 @@
                         <div class="modal-content">
                           <!-- Modal Header -->
                           <div class="modal-header">
-                            <h4 class="modal-title">Hapus Barang</h4>
+                            <h4 class="modal-title">remove item</h4>
                             <button type="button" class="close" onclick="$('#delete<%= element.idbarang %>').modal('hide');">&times;</button>
                           </div>
                           <!-- Modal body -->
                           <form action="/barang/delete/<%= element.idbarang %>" method="post">
                             <div class="modal-body">
-                              Apakah Anda yakin ingin menghapus barang <%= element.namabarang %>?
+                              Are you sure you want to delete the item <%= element.namabarang %>?
                             </div>
                             <div class="modal-footer">
-                              <button type="submit" class="btn btn-primary">Ya</button>
-                              <button type="button" class="btn btn-secondary" onclick="$('#delete<%= element.idbarang %>').modal('hide');">Batal</button>
+                              <button type="submit" class="btn btn-primary">Yes</button>
+                              <button type="button" class="btn btn-secondary" onclick="$('#delete<%= element.idbarang %>').modal('hide');">clear</button>
                             </div>
                           </form>
                         </div>
@@ -163,7 +163,7 @@
                               <img src="/uploads/<%= element.kodebarang %>.png">
                             </div>
                             <div class="form-group">
-                              <label for="qrSize">Ukuran (lebar x tinggi dalam cm)</label>
+                              <label for="qrSize">size (widh x length in cm)</label>
                               <div class="input-group">
                                 <input id="qrWidth<%= element.idbarang %>" type="number" class="form-control" name="qrWidth" placeholder="Lebar (cm)" step="0.01" value="2"  min="0.01" oninput="checkSizeValue(this)" />
                                 <div class="input-group-prepend input-group-append">
@@ -173,13 +173,13 @@
                               </div>
                             </div>
                             <div class="form-group">
-                              <label for="qrQty">Jumlah</label>
+                              <label for="qrQty">amount</label>
                               <input id="qrQty<%= element.idbarang %>" type="number" class="form-control" name="qrQty" placeholder="Jumlah" value="1" min="1" oninput="checkQtyValue(this)" />
                             </div>
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-primary" onclick="PrintImage('/uploads/<%= element.kodebarang %>.png','<%= element.idbarang %>', '<%= element.kodebarang %> - <%= element.namabarang %>'); return false;">Print</button>
-                            <button type="button" class="btn btn-secondary" onclick="$('#printqr<%= element.idbarang %>').modal('hide');">Tutup</button>
+                            <button type="button" class="btn btn-secondary" onclick="$('#printqr<%= element.idbarang %>').modal('hide');">clear</button>
                           </div>
                         </div>
                       </div>
@@ -206,37 +206,37 @@
         <div class="modal-content">
           <!-- Modal Header -->
           <div class="modal-header">
-            <h4 class="modal-title">Tambah Barang</h4>
+            <h4 class="modal-title">item add</h4>
             <button type="button" class="close" onclick="$('#add').modal('hide');">&times;</button>
           </div>
           <!-- Modal body -->
           <form action="/barang" method="post" enctype="multipart/form-data">
             <div class="modal-body">
               <div class="form-group">
-                <label for="kodebarang">Kode Barang</label>
+                <label for="kodebarang">item code</label>
                 <input type="text" name="kodebarang" class="form-control" placeholder="Kode Barang" required />
               </div>
               <div class="form-group">
-                <label for="namabarang">Nama Barang</label>
+                <label for="namabarang">item name</label>
                 <input type="text" name="namabarang" class="form-control" placeholder="Nama Barang" required />
               </div>
               <div class="form-group">
-                <label for="deskripsi">Deskripsi</label>
+                <label for="deskripsi">description</label>
                 <textarea name="deskripsi" class="form-control" rows="2" placeholder="Deskripsi" required></textarea>
               </div>
               <div class="form-group">
-                <label for="stock">Stok</label>
+                <label for="stock">Stock</label>
                 <input type="number" name="stock" class="form-control" min="1" placeholder="Stok" required />
               </div>
               <div class="form-group">
-                <label for="image">Gambar</label>
+                <label for="image">picture</picture></label>
                 <input type="file" name="image" accept="image/png, image/jpeg" class="form-control-file" required />
-                <small class="form-text text-muted">Maks: 1MB</small>
+                <small class="form-text text-muted">Max: 1MB</small>
               </div>
             </div>
             <div class="modal-footer">
-              <button type="submit" class="btn btn-primary">Simpan</button>
-              <button type="button" class="btn btn-secondary" onclick="$('#add').modal('hide');">Tutup</button>
+              <button type="submit" class="btn btn-primary">save</button>
+              <button type="button" class="btn btn-secondary" onclick="$('#add').modal('hide');">clear</button>
             </div>
           </form>
         </div>

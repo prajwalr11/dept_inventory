@@ -1,7 +1,7 @@
 <%- include('./partials/header') %> 
 <%- include('./partials/nav') %> 
           <div class="col-sm-6">
-            <h1>Edit Akun</h1>
+            <h1>Edit Account</h1>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -18,10 +18,10 @@
         <% }) %> 
         <% } %> 
         <% if(typeof locals.user != 'undefined' && locals.user != 'superadmin@email.com') { %>
-        <!-- Ganti Email -->
+        <!-- Change Email -->
         <div class="card card-default">
           <div class="card-header">
-            <h3 class="card-title">Ganti Email</h3>
+            <h3 class="card-title">Change Email</h3>
           </div>
           <!-- /.card-header -->
           <!-- form start -->
@@ -31,16 +31,16 @@
               <input type="hidden" name="matchPass" required value="<%= usr.matchPass || usr.password %>"/>
               <input type="hidden" name="id" required value="<%= usr.id %>"/>
               <div class="form-group">
-                <label for="oldEmail">Email Sekarang : </label>
+                <label for="oldEmail">Old Email: </label>
                 <%= usr.oldEmail || usr.email %>
               </div>
               <div class="form-group">
-                <label for="email">Email Baru</label>
-                <input type="email" name="email" class="form-control" placeholder="Email Baru" required />
+                <label for="email">New Email</label>
+                <input type="email" name="email" class="form-control" placeholder="New Email" required />
               </div>
               <div class="form-group">
-                <label for="password">Kata Sandi</label>
-                <input type="password" name="password" class="form-control" placeholder="Kata Sandi" required />
+                <label for="password">Password</label>
+                <input type="password" name="password" class="form-control" placeholder="Password" required />
               </div>
             </div>
             <!-- /.card-body -->
@@ -53,10 +53,10 @@
         <!-- /.card -->
         <% } %> 
         
-        <!-- Ganti Kata Sandi -->
+        <!-- Change Password -->
         <div class="card card-default">
           <div class="card-header">
-            <h3 class="card-title">Ganti Kata Sandi</h3>
+            <h3 class="card-title">Change Password</h3>
           </div>
           <!-- /.card-header -->
           <!-- form start -->
@@ -65,16 +65,16 @@
               <input type="hidden" name="matchPass" required value="<%= usr.matchPass || usr.password %>"/>
               <input type="hidden" name="id" required value="<%= usr.id %>"/>
               <div class="form-group">
-                <label for="oldPassword">Kata Sandi Lama</label>
-                <input type="password" name="oldPassword" class="form-control" placeholder="Kata Sandi Lama" required />
+                <label for="oldPassword">Old Password</label>
+                <input type="password" name="oldPassword" class="form-control" placeholder="Old Password" required />
               </div>
               <div class="form-group">
-                <label for="password">Kata Sandi Baru</label>
-                <input type="password" name="password" class="form-control" placeholder="Kata Sandi Baru" required />
+                <label for="password">New Password</label>
+                <input type="password" name="password" class="form-control" placeholder="New Password" required />
               </div>
               <div class="form-group">
-                <label for="confirmPassword">Konfirmasi Kata Sandi Baru</label>
-                <input type="password" name="confirmPassword" class="form-control" placeholder="Konfirmasi Kata Sandi Baru" required />
+                <label for="confirmPassword">Confirm New Password</label>
+                <input type="password" name="confirmPassword" class="form-control" placeholder="Confirm New Password" required />
               </div>
             </div>
             <!-- /.card-body -->
@@ -87,10 +87,10 @@
         <!-- /.card -->
 
         <% if(typeof locals.user != 'undefined' && locals.user != 'superadmin@email.com') { %>
-        <!-- Ganti Role -->
+        <!-- Change Role -->
         <div class="card card-default">
           <div class="card-header">
-            <h3 class="card-title">Ganti Role</h3>
+            <h3 class="card-title">Change Role</h3>
           </div>
           <!-- /.card-header -->
           <!-- form start -->
@@ -101,16 +101,16 @@
               <input type="hidden" name="matchPass" required value="<%= usr.matchPass || usr.password %>"/>
               <input type="hidden" name="id" required value="<%= usr.id %>"/>
               <div class="form-group">
-                <label for="oldEmail">Role Sekarang : </label>
+                <label for="oldEmail">Current Role: </label>
                 <%= usr.oldRole || usr.role %>
               </div>
               <div class="form-group">
-                <label for="oldEmail">Ganti Role Ke : </label>
-                user
+                <label for="oldEmail">Change Role to: </label>
+                User
               </div>
               <div class="form-group">
-                <label for="password">Kata Sandi</label>
-                <input type="password" name="password" class="form-control" placeholder="Kata Sandi" required />
+                <label for="password">Password</label>
+                <input type="password" name="password" class="form-control" placeholder="Password" required />
               </div>
             </div>
             <!-- /.card-body -->

@@ -1,14 +1,14 @@
 <%- include('./partials/header') %> 
 <%- include('./partials/nav') %> 
           <div class="col-sm-6">
-            <h1>Barang Masuk</h1>
+            <h1>Incoming Goods</h1>
           </div>
           <div class="col-sm-6">
             <div id="bt" class="float-sm-right">
               <div class="dt-buttons btn-group flex-wrap">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add">
                   <i class="fas fa-plus"></i>
-                  Tambah Barang Masuk
+                  Add more items
                 </button>
               </div>
             </div>
@@ -30,7 +30,7 @@
             <% } %> 
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Tabel Barang Masuk</h3>
+                <h3 class="card-title">Incoming items Table</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -38,12 +38,12 @@
                   <thead>
                     <tr>
                       <th>No</th>
-                      <th>Tanggal & Waktu</th>
-                      <th>Kode Barang</th>
-                      <th>Nama Barang</th>
-                      <th>Jumlah</th>
-                      <th>Keterangan</th>
-                      <th>Penginput</th>
+                      <th>Date & Time</th>
+                      <th>Item code</th>
+                      <th>Item name</th>
+                      <th>amount</th>
+                      <th>Description</th>
+                      <th>input</th>
                       <% if(typeof locals.user != 'undefined') { %>
                       <th>Aksi</th>
                       <% } %> 
@@ -77,7 +77,7 @@
                         <div class="modal-content">
                           <!-- Modal Header -->
                           <div class="modal-header">
-                            <h4 class="modal-title">Edit Barang Masuk</h4>
+                            <h4 class="modal-title">Edit incoming goodsk</h4>
                             <button type="button" class="close" onclick="$('#edit<%= element.idmasuk %>').modal('hide');">&times;</button>
                           </div>
                           <!-- Modal body -->
@@ -86,7 +86,7 @@
                               <input type="hidden" name="idmasuk" required value="<%= element.idmasuk %>"/>
                               <input type="hidden" name="idbarang" required value="<%= element.idbarang %>"/>
                               <div class="form-group">
-                                <label for="qty">Jumlah</label>
+                                <label for="qty">amount</label>
                                 <input type="number" name="qty" class="form-control" min="1" placeholder="Jumlah" required value="<%= element.qty %>" />
                               </div>
                               <div class="form-group">
@@ -109,20 +109,20 @@
                         <div class="modal-content">
                           <!-- Modal Header-->
                           <div class="modal-header">
-                            <h4 class="modal-title">Hapus Barang Masuk</h4>
+                            <h4 class="modal-title">delete Barang Masuk</h4>
                             <button type="button" class="close" onclick="$('#delete<%= element.idmasuk %>').modal('hide');">&times;</button>
                           </div>
                           <!-- Modal body-->
                           <form action="/barangmasuk/delete/<%= element.idmasuk %>" method="post">
                             <div class="modal-body">
-                              Apakah Anda yakin ingin menghapus barang masuk <%= element.namabarang_m %> pada tanggal <%= moment(element.tanggal).locale('id').format('DD-MM-YYYY [jam] HH:mm:ss') %>?
+                              Are you sure you want to delete the entered item <%= element.namabarang_m %> on the date <%= moment(element.tanggal).locale('id').format('DD-MM-YYYY [jam] HH:mm:ss') %>?
                               <input type="hidden" name="idmasuk" required value="<%= element.idmasuk %>">
                               <input type="hidden" name="idbarang" required value="<%= element.idbarang %>">
                               <input type="hidden" name="qty" required value="<%= element.qty %>">
                             </div>
                             <div class="modal-footer">
                               <button type="submit" class="btn btn-primary">Ya</button>
-                              <button type="button" class="btn btn-secondary" onclick="$('#delete<%= element.idmasuk %>').modal('hide');">Batal</button>
+                              <button type="button" class="btn btn-secondary" onclick="$('#delete<%= element.idmasuk %>').modal('hide');">Clear</button>
                             </div>
                           </form>
                         </div>
@@ -150,7 +150,7 @@
         <div class="modal-content">
           <!-- Modal Header -->
           <div class="modal-header">
-            <h4 class="modal-title">Tambah Barang Masuk</h4>
+            <h4 class="modal-title">get Barang Masuk</h4>
             <button type="button" class="close" onclick="$('#add').modal('hide');stopScan();">&times;</button>
           </div>
           <!-- Modal body -->
@@ -160,26 +160,26 @@
                 <div id="reader"></div>
               </div>
               <div class="form-group">
-                <label for="barang">Barang</label>
+                <label for="barang">Goods</label>
                 <select class="form-control select2bs4" id="barang" name="barang" required>
-                  <option value="" disabled selected>Pilih Barang</option>
+                  <option value="" disabled selected>Select Goods</option>
                   <% brg.forEach((element)=> { %>
                   <option value="<%= element.idbarang %>"><%= element.kodebarang %> - <%= element.namabarang %></option>
                   <% }) %> 
                 </select>
               </div>
               <div class="form-group">
-                <label for="qty">Jumlah</label>
+                <label for="qty">Amount</label>
                 <input type="number" name="qty" class="form-control" min="1" placeholder="Jumlah" required />
               </div>
               <div class="form-group">
-                <label for="keterangan">Keterangan</label>
+                <label for="keterangan">Description</label>
                 <textarea name="keterangan" class="form-control" rows="2" placeholder="Keterangan" required></textarea>
               </div>
             </div>
             <div class="modal-footer">
-              <button type="submit" class="btn btn-primary">Simpan</button>
-              <button type="button" class="btn btn-secondary" onclick="$('#add').modal('hide');stopScan();">Tutup</button>
+              <button type="submit" class="btn btn-primary">Save</button>
+              <button type="button" class="btn btn-secondary" onclick="$('#add').modal('hide');stopScan();">Close</button>
             </div>
           </form>
         </div>
