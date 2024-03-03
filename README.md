@@ -1,6 +1,6 @@
-# Sistem Informasi Inventaris Barang
+# Inventory Management System
 
-An inventory management application. This is my final project for WGS Bootcamp Batch 4.
+An inventory management application.
 
 ## Table of Contents
 
@@ -83,29 +83,4 @@ Make sure your system PATH includes Postgres tools. For Windows, [see instructio
 - **Integrated Bulk QR Code Generator**: Enables the creation of QR codes in bulk for selected items, complete with customization options for resizing and printing.
 - **Versatile QR Code Scanner**: Offers the ability to scan QR codes using webcam devices or by uploading images.
 
-## Screenshots
 
-### Dashboard
-
-![Dashboard](https://user-images.githubusercontent.com/32730327/273454645-93f713e4-ae39-46f9-8557-5403794b8104.png)
-
-### Table
-
-![Table](https://user-images.githubusercontent.com/32730327/273454711-420e7794-6de7-4a96-bd93-51c745c4e983.png)
-
-### Print QR Code
-
-![Print QR](https://user-images.githubusercontent.com/32730327/279402658-b86975e8-857c-46ee-9fa6-0501d59afde6.png)
-
-### Scan QR Code
-
-![Scan QR1](https://user-images.githubusercontent.com/32730327/273454801-d9c2f9e0-5ee1-4708-8283-656e787ce9f2.png)
-![Scan QR2](https://user-images.githubusercontent.com/32730327/273454805-ca0edc90-de09-4def-a2fa-9fa7cfe7dfb0.png)
-
-### Dark Mode
-
-![Dark Mode](https://user-images.githubusercontent.com/32730327/273454814-4f1d843c-59bf-4469-bb28-92ebf73f9caa.png)
-
-## License
-
-This project is licensed under the [GNU General Public License v3.0](https://github.com/savareyhano/Sistem-Informasi-Inventaris-Barang/blob/main/LICENSE).
